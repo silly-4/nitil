@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REWU - Eating Disorder Meal Plans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #3c5a99;
+            color: white;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header img {
+            height: 110px;
+            width: auto;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .section {
+            padding: 30px;
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px;
+            background: #a7c7e7;
+            font-size: 1.5em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #3c5a99;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+        }
+        button {
+            background: #3c5a99;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #3c5a99;
+            color: white;
+            margin-top: auto;
+        }
+        .meal-list {
+            margin-top: 20px;
+        }
+        .meal-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .meal-list li {
+            list-style: none;
+            margin: 25px 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+        }
+        .meal-list img {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+            border-radius: 8px;
+        }
+        .meal-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .meal-list li:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+        .meal-item {
+            margin: 15px 0;
+            font-size: 1.2em;
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .meal-item strong {
+            color: #3c5a99;
+        }
+        main {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="REWU Logo">
+    <h1>REWU - Personalized Eating Disorder Meal Plans</h1>
+
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('home')">Home</a></li>
+            <li><a href="#" onclick="showSection('about')">About</a></li>
+            <li><a href="#" onclick="showSection('meal-plan')">Meal Plans</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="home" class="section">
+        <h2>Find the Right Meal Plan for You</h2>
+        <p>Enter your eating disorder issue to get a personalized meal plan and recovery tips.</p>
+
+        <label for="disorder">Select Your Eating Disorder:</label>
+        <select id="disorder">
+            <option value="anorexia">Anorexia Nervosa</option>
+            <option value="bulimia">Bulimia Nervosa</option>
+            <option value="binge">Binge Eating Disorder</option>
+        </select>
+
+        <button onclick="showMealPlan()">Get My Meal Plan</button>
+
+        <div id="meal-plan-result" class="hidden">
+            <h3>Your Meal Plan</h3>
+            <div id="meal-list" class="meal-list"></div>
+            <h3>Recovery Tips</h3>
+            <p id="tip-text"></p>
+        </div>
+    </section>
+
+    <section id="about" class="section hidden">
+        <h2>About REWU</h2>
+        <p>REWU is dedicated to providing carefully curated meal plans for individuals recovering from eating disorders, ensuring balance, nutrition, and sustainability.</p>
+        <p><strong>Website Owners:</strong> Nitil Dalen & Kachana Khy</p>
+    </section>
+
+    <section id="meal-plan" class="section hidden">
+        <h2>Example Meal Plans</h2>
+            <ul class="meal-list">
+                <li><img src="img1.jpg" alt="Meal"><strong>Breakfast:</strong> Whole wheat pancakes with fresh fruit</li>
+                <li><img src="img2.jpg" alt="Meal"><strong>Snack:</strong> Almonds and dark chocolate</li>
+                <li><img src="img3.jpg" alt="Meal"><strong>Lunch:</strong> Brown rice with grilled chicken and avocado</li>
+                <li><img src="img4.jpg" alt="Meal"><strong>Snack:</strong> Cottage cheese with honey</li>
+                <li><img src="img5.jpg" alt="Meal"><strong>Dinner:</strong> Baked salmon with quinoa and steamed vegetables</li>
+            </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 REWU | Personalized Eating Disorder Meal Plans</p>
+</footer>
+
+<script>
+    function showSection(sectionId) {
+        ['home', 'about', 'meal-plan'].forEach(id => {
+            document.getElementById(id).classList.add('hidden');
+        });
+        document.getElementById(sectionId).classList.remove('hidden');
+    
+    }
+    
+    function showMealPlan() {
+        let disorder = document.getElementById('disorder').value;
+        let mealList = document.getElementById('meal-list');
+        let tipText = document.getElementById('tip-text');
+        mealList.innerHTML = ""; // Clear previous results
+
+        let mealPlans = {};
+        let tips = {};
+
+        mealPlans['anorexia'] = [
+            "Breakfast: Smoothie with banana, almond butter, and oat milk.",
+            "Snack: Trail mix with nuts and dried fruits.",
+            "Lunch: Grilled chicken with quinoa and steamed vegetables.",
+            "Dinner: Salmon with roasted sweet potatoes and a side salad."
+        ];
+        tips['anorexia'] = "Start with small, nutrient-dense meals and gradually increase portion sizes.";
+
+        mealPlans['bulimia'] = [
+            "Breakfast: Whole grain toast with avocado and poached egg.",
+            "Snack: Greek yogurt with honey and walnuts.",
+            "Lunch: Turkey wrap with plenty of fresh vegetables.",
+            "Dinner: Baked chicken with brown rice and steamed broccoli."
+        ];
+        tips['bulimia'] = "Stick to a regular eating schedule to reduce binge triggers.";
+
+        mealPlans['binge'] = [
+            "Breakfast: Oatmeal with fresh berries and a sprinkle of flaxseeds.",
+            "Snack: Apple slices with almond butter.",
+            "Lunch: Grilled chicken salad with a variety of colorful vegetables.",
+            "Dinner: Baked fish with quinoa and roasted vegetables."
+        ];
+        tips['binge'] = "Focus on portion control and mindful eating.";
+
+        if (mealPlans[disorder]) {
+            mealPlans[disorder].forEach(meal => {
+                let mealItem = document.createElement('div');
+                mealItem.className = 'meal-item';
+                mealItem.innerHTML = `<strong>Meal:</strong> ${meal}`;
+                mealList.appendChild(mealItem);
+            });
+            tipText.innerText = tips[disorder];
+            document.getElementById('meal-plan-result').classList.remove('hidden');
+        }
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        alert("Welcome to REWU - Your Personalized Meal Plan Guide!");
+    });
+</script>
+
+</body>
+</html>
